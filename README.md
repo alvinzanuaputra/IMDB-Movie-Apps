@@ -85,6 +85,40 @@ flutter run --dart-define-from-file=.env
 
 ### Build to App
 
+Berikut command build untuk Android dan iOS beserta lokasi output file:
+
+```bash
+# Android APK (release)
+flutter build apk --release
+
+# Android APK (release, split per ABI - ukuran lebih kecil)
+flutter build apk --release --split-per-abi
+
+# Android App Bundle (AAB) untuk Play Store
+flutter build appbundle --release
+
+# iOS .app (butuh macOS + Xcode)
+flutter build ios --release
+
+# iOS .ipa (butuh macOS + Xcode)
+flutter build ipa --release
+```
+
+Lokasi output build:
+
+- `build/app/outputs/flutter-apk/app-release.apk`
+- `build/app/outputs/flutter-apk/app-arm64-v8a-release.apk` (jika `--split-per-abi`)
+- `build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk` (jika `--split-per-abi`)
+- `build/app/outputs/flutter-apk/app-x86_64-release.apk` (jika `--split-per-abi`)
+- `build/app/outputs/bundle/release/app-release.aab`
+- `build/ios/iphoneos/Runner.app`
+- `build/ios/ipa/*.ipa`
+
+Catatan:
+
+- Untuk iOS build hanya bisa dilakukan di macOS dengan Xcode terpasang.
+- Jika project memakai konfigurasi `.env`, tambahkan juga flag: `--dart-define-from-file=.env`.
+
 
 
 ## Modul Kunci

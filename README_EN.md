@@ -95,6 +95,42 @@ flutter run
 flutter run --dart-define-from-file=.env
 ```
 
+### Build to App
+
+Use the following commands to build Android and iOS apps, including output locations:
+
+```bash
+# Android APK (release)
+flutter build apk --release
+
+# Android APK (release, split per ABI - smaller size)
+flutter build apk --release --split-per-abi
+
+# Android App Bundle (AAB) for Play Store
+flutter build appbundle --release
+
+# iOS .app (requires macOS + Xcode)
+flutter build ios --release
+
+# iOS .ipa (requires macOS + Xcode)
+flutter build ipa --release
+```
+
+Build output paths:
+
+- `build/app/outputs/flutter-apk/app-release.apk`
+- `build/app/outputs/flutter-apk/app-arm64-v8a-release.apk` (with `--split-per-abi`)
+- `build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk` (with `--split-per-abi`)
+- `build/app/outputs/flutter-apk/app-x86_64-release.apk` (with `--split-per-abi`)
+- `build/app/outputs/bundle/release/app-release.aab`
+- `build/ios/iphoneos/Runner.app`
+- `build/ios/ipa/*.ipa`
+
+Notes:
+
+- iOS builds can only be created on macOS with Xcode installed.
+- If your project uses `.env`, append: `--dart-define-from-file=.env`.
+
 ## Key Modules
 
 ### Database Handler (SQFLite)
