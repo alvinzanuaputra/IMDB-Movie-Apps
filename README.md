@@ -1,8 +1,8 @@
 ﻿# IMDB Movies App
 
-*[Read in English 🇬🇧](README_EN.md)*
+*[Read in English](README_EN.md)*
 
-Aplikasi berbasis Flutter bergaya modern yang menampilkan tren harian, informasi detail film, serial TV, trailer, pencarian, dan fitur simpan ke daftar favorit. Didukung oleh integrasi mulus dengan The Movie Database (TMDB) API.
+Aplikasi berbasis Flutter yang menampilkan tren harian, informasi detail film, serial TV, trailer, pencarian, dan fitur simpan ke daftar favorit. Didukung oleh integrasi dengan The Movie Database (TMDB) API.
 
 **Built by Alvin Zanua Putra**
 
