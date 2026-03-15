@@ -91,7 +91,7 @@ class _drawerfuncState extends State<drawerfunc> {
                             radius: profileRadius,
                             backgroundColor: const Color(0xFF27344A),
                             backgroundImage: _image == null
-                                ? const AssetImage('assets/icons/logo.png')
+                                ? const AssetImage('assets/icons/user.png')
                                     as ImageProvider
                                 : FileImage(_image!),
                           ),

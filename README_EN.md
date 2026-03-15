@@ -148,6 +148,17 @@ Located in `lib/Scripts/UrlPack.dart`. It manages link parameter formations via 
 var getDetail = UrlPack.movieDetails(movie_id);
 ```
 
+## Documentation
+
+
+<p align="center">
+   <img src="./assets/docs/doc2.jpeg" alt="Dokumentasi 2" width="19%" style="border: 2px solid #3A465A; border-radius: 8px;" />
+   <img src="./assets/docs/doc1.jpeg" alt="Dokumentasi 1" width="19%" style="border: 2px solid #3A465A; border-radius: 8px;" />
+   <img src="./assets/docs/doc3.jpeg" alt="Dokumentasi 3" width="19%" style="border: 2px solid #3A465A; border-radius: 8px;" />
+   <img src="./assets/docs/doc4.jpeg" alt="Dokumentasi 4" width="19%" style="border: 2px solid #3A465A; border-radius: 8px;" />
+   <img src="./assets/docs/doc5.jpeg" alt="Dokumentasi 5" width="19%" style="border: 2px solid #3A465A; border-radius: 8px;" />
+</p>
+
 ## License
 
 This project is licensed under the [MIT License](LICENSE) - see the [LICENSE](LICENSE) file for details. Free to use for learning purposes.
