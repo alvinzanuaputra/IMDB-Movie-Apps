@@ -144,11 +144,11 @@ var getDetail = UrlPack.movieDetails(movie_id);
 ## Dokumentasi
 
 <p align="center">
-   <img src="/assets/docs/doc2.jpeg" alt="Dokumentasi 2" width="19%" />
-   <img src="/assets/docs/doc1.jpeg" alt="Dokumentasi 1" width="19%" />
-   <img src="/assets/docs/doc3.jpeg" alt="Dokumentasi 3" width="19%" />
-   <img src="/assets/docs/doc4.jpeg" alt="Dokumentasi 4" width="19%" />
-   <img src="/assets/docs/doc5.jpeg" alt="Dokumentasi 5" width="19%" />
+   <img src="./assets/docs/doc2.jpeg" alt="Dokumentasi 2" width="19%" style="border: 2px solid #3A465A; border-radius: 8px;" />
+   <img src="./assets/docs/doc1.jpeg" alt="Dokumentasi 1" width="19%" style="border: 2px solid #3A465A; border-radius: 8px;" />
+   <img src="./assets/docs/doc3.jpeg" alt="Dokumentasi 3" width="19%" style="border: 2px solid #3A465A; border-radius: 8px;" />
+   <img src="./assets/docs/doc4.jpeg" alt="Dokumentasi 4" width="19%" style="border: 2px solid #3A465A; border-radius: 8px;" />
+   <img src="./assets/docs/doc5.jpeg" alt="Dokumentasi 5" width="19%" style="border: 2px solid #3A465A; border-radius: 8px;" />
 </p>
 
 ## License
