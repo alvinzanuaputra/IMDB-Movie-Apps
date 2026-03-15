@@ -2,7 +2,7 @@
 
 *[Baca dalam Bahasa Indonesia 🇮🇩](README.md)*
 
-A modern Flutter-based application that displays daily trending movies, TV series details, trailers, a smart search feature, and local favorite list capabilities. Powered by seamless integration with The Movie Database (TMDB) API.
+Flutter-based application that displays daily trending movies, TV series details, trailers, a smart search feature, and local favorite list capabilities. Powered integration with The Movie Database (TMDB) API.
 
 **Built by Alvin Zanua Putra**
 
