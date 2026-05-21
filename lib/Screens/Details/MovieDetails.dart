@@ -289,7 +289,8 @@ class _MovieDetailsState extends State<MovieDetails> {
       decoration: BoxDecoration(
         color: const Color(0xFF172338),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: const Color(0xFF35B6FF).withOpacity(0.28)),
+        border:
+            Border.all(color: const Color(0xFF35B6FF).withValues(alpha: 0.28)),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,

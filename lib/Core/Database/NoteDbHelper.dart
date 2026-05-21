@@ -1,95 +1,107 @@
-import 'package:path_provider/path_provider.dart';
-import 'package:sqflite/sqflite.dart';
-import 'package:path/path.dart';
-import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FavMovielist {
-  static const dbname = 'favlist.db';
-  static const dbversion = 1;
   static const tablename = 'favoriatelist';
   static const columnId = 'id';
   static const columnfavid = 'tmdbid';
   static const columnfavtype = 'tmdbtype';
   static const columnfavname = 'tmdbname';
   static const columnfavrating = 'tmdbrating';
+  static const columnCreatedAt = 'created_at';
 
-  static final FavMovielist _instance = FavMovielist();
-  static Database? _database;
+  static final FavMovielist _instance = FavMovielist._internal();
 
-  Future<Database?> get db async {
-    _database ??= await _initDb();
-    return _database;
+  factory FavMovielist() {
+    return _instance;
   }
 
-  Future<Database> _initDb() async {
-    Directory documentDirectory = await getApplicationDocumentsDirectory();
-    String path = join(documentDirectory.path, dbname);
-    return await openDatabase(path, version: dbversion, onCreate: _onCreate);
-  }
+  FavMovielist._internal();
 
-  Future<void> _onCreate(Database db, int version) async {
-    await db.execute('''
-    CREATE TABLE $tablename (
-      $columnId INTEGER PRIMARY KEY AUTOINCREMENT,
-      $columnfavid TEXT NOT NULL,
-      $columnfavtype TEXT NOT NULL,
-      $columnfavname TEXT NOT NULL,
-      $columnfavrating TEXT NOT NULL
-    )
-    ''');
-  }
-
-  Future<int> insert(Map<String, dynamic> row) async {
-    Database? db = await _instance.db;
-    return await db!.insert(tablename, row);
+  Future<dynamic> insert(Map<String, dynamic> row) async {
+    row[columnCreatedAt] = FieldValue.serverTimestamp();
+    return await FirebaseFirestore.instance.collection(tablename).add(row);
   }
 
   Future<List<Map<String, dynamic>>> queryAll() async {
-    Database? db = await _instance.db;
-    return await db!.query(tablename);
+    final querySnapshot =
+        await FirebaseFirestore.instance.collection(tablename).get();
+    return querySnapshot.docs.map((doc) {
+      final data = doc.data();
+      data['id'] = doc.id;
+      return data;
+    }).toList();
   }
 
-  Future<int> delete(int id) async {
-    Database? db = await _instance.db;
-    return await db!.delete(tablename, where: '$columnId = ?', whereArgs: [id]);
+  Future<void> delete(dynamic id) async {
+    await FirebaseFirestore.instance
+        .collection(tablename)
+        .doc(id.toString())
+        .delete();
   }
 
 //delete from database by tmdbid and tmdbtype
   Future deletespecific(String id, String type) async {
-    Database? db = await _instance.db;
-    return await db!.delete(tablename,
-        where: '$columnfavid = ? AND $columnfavtype = ?',
-        whereArgs: [id, type]);
+    final snapshot = await FirebaseFirestore.instance
+        .collection(tablename)
+        .where(columnfavid, isEqualTo: id)
+        .where(columnfavtype, isEqualTo: type)
+        .get();
+    for (var doc in snapshot.docs) {
+      await doc.reference.delete();
+    }
   }
 
-  Future search(String id, String name, String type) async {
-    Database? db = await _instance.db;
-    return Sqflite.firstIntValue(await db!.rawQuery(
-        'SELECT COUNT(*) FROM $tablename WHERE $columnfavid = ? AND $columnfavname = ? AND $columnfavtype = ?',
-        [id, name, type]));
+  Future<int> search(String id, String name, String type) async {
+    final snapshot = await FirebaseFirestore.instance
+        .collection(tablename)
+        .where(columnfavid, isEqualTo: id)
+        .where(columnfavname, isEqualTo: name)
+        .where(columnfavtype, isEqualTo: type)
+        .get();
+    return snapshot.docs.length;
   }
 
   ////sort by name
 
   Future<List<Map<String, dynamic>>> queryAllSorted() async {
-    Database? db = await _instance.db;
-    return await db!.query(tablename, orderBy: '$columnfavname ASC');
+    final querySnapshot = await FirebaseFirestore.instance
+        .collection(tablename)
+        .orderBy(columnfavname, descending: false)
+        .get();
+    return querySnapshot.docs.map((doc) {
+      final data = doc.data();
+      data['id'] = doc.id;
+      return data;
+    }).toList();
   }
 
   ////sort by rating
 
   Future<List<Map<String, dynamic>>> queryAllSortedRating() async {
-    Database? db = await _instance.db;
-    return await db!.query(tablename, orderBy: '$columnfavrating DESC');
+    final querySnapshot = await FirebaseFirestore.instance
+        .collection(tablename)
+        .orderBy(columnfavrating, descending: true)
+        .get();
+    return querySnapshot.docs.map((doc) {
+      final data = doc.data();
+      data['id'] = doc.id;
+      return data;
+    }).toList();
   }
 
   Future<List<Map<String, dynamic>>> queryAllSortedDate() async {
-    Database? db = await _instance.db;
-    return await db!.query(tablename, orderBy: '$columnId DESC');
+    final querySnapshot = await FirebaseFirestore.instance
+        .collection(tablename)
+        .orderBy(columnCreatedAt, descending: true)
+        .get();
+    return querySnapshot.docs.map((doc) {
+      final data = doc.data();
+      data['id'] = doc.id;
+      return data;
+    }).toList();
   }
 
   Future close() async {
-    Database? db = await _instance.db;
-    db!.close();
+    // No longer required for Firestore
   }
 }

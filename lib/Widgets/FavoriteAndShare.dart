@@ -93,13 +93,13 @@ class _addtofavoriateState extends State<addtofavoriate> {
                     height: 48,
                     decoration: BoxDecoration(
                       color: _isFavorite
-                          ? const Color(0xFFFF6A3D).withOpacity(0.2)
+                          ? const Color(0xFFFF6A3D).withValues(alpha: 0.2)
                           : const Color(0xFF172338),
                       borderRadius: BorderRadius.circular(16),
                       border: Border.all(
                         color: _isFavorite
                             ? const Color(0xFFFF6A3D)
-                            : const Color(0xFF35B6FF).withOpacity(0.25),
+                            : const Color(0xFF35B6FF).withValues(alpha: 0.25),
                       ),
                     ),
                     child: Row(
@@ -136,7 +136,7 @@ class _addtofavoriateState extends State<addtofavoriate> {
                       color: const Color(0xFF172338),
                       borderRadius: BorderRadius.circular(16),
                       border: Border.all(
-                        color: const Color(0xFF35B6FF).withOpacity(0.25),
+                        color: const Color(0xFF35B6FF).withValues(alpha: 0.25),
                       ),
                     ),
                     child: const Row(

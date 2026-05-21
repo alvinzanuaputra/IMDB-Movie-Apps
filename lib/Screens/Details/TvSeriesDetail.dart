@@ -26,8 +26,8 @@ class _TvSeriesDetailsState extends State<TvSeriesDetails> {
   List<Map<String, dynamic>> recommendserieslist = [];
   List<Map<String, dynamic>> seriestrailerslist = [];
 
-  List<String> _genres = [];
-  List<Map<String, dynamic>> _creators = [];
+  final List<String> _genres = [];
+  final List<Map<String, dynamic>> _creators = [];
   int _seasonCount = 0;
 
   late Future<void> _tvDetailsFuture;
@@ -352,7 +352,8 @@ class _TvSeriesDetailsState extends State<TvSeriesDetails> {
       decoration: BoxDecoration(
         color: const Color(0xFF172338),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: const Color(0xFF35B6FF).withOpacity(0.28)),
+        border:
+            Border.all(color: const Color(0xFF35B6FF).withValues(alpha: 0.28)),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
