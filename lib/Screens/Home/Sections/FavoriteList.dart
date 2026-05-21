@@ -185,7 +185,7 @@ class _FavoriateMoviesState extends State<FavoriateMovies> {
                                   borderRadius: BorderRadius.circular(12),
                                   border: Border.all(
                                     color: const Color(0xFF35B6FF)
-                                        .withOpacity(0.12),
+                                        .withValues(alpha: 0.12),
                                   ),
                                 ),
                                 child: Row(

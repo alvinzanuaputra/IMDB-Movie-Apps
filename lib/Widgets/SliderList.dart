@@ -51,15 +51,15 @@ Widget sliderlist(
                             borderRadius: BorderRadius.circular(18),
                             boxShadow: [
                               BoxShadow(
-                                  color:
-                                      const Color(0xFF35B6FF).withOpacity(0.16),
+                                  color: const Color(0xFF35B6FF)
+                                      .withValues(alpha: 0.16),
                                   blurRadius: 16,
                                   spreadRadius: 1,
                                   offset: const Offset(0, 8))
                             ],
                             image: DecorationImage(
                                 colorFilter: ColorFilter.mode(
-                                    Colors.black.withOpacity(0.18),
+                                    Colors.black.withValues(alpha: 0.18),
                                     BlendMode.darken),
                                 image: NetworkImage(UrlPack.imageUrl(
                                     firstlistname[index]['poster_path']
@@ -85,7 +85,8 @@ Widget sliderlist(
                                           begin: Alignment.bottomCenter,
                                           end: Alignment.topCenter,
                                           colors: [
-                                            Colors.black.withOpacity(0.92),
+                                            Colors.black
+                                                .withValues(alpha: 0.92),
                                             Colors.transparent
                                           ])))),
                           Positioned(
@@ -94,7 +95,7 @@ Widget sliderlist(
                             child: Container(
                                 decoration: BoxDecoration(
                                     color: const Color(0xFF111B2B)
-                                        .withOpacity(0.75),
+                                        .withValues(alpha: 0.75),
                                     borderRadius: BorderRadius.circular(6)),
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 6, vertical: 4),
@@ -108,7 +109,7 @@ Widget sliderlist(
                             child: Container(
                                 decoration: BoxDecoration(
                                     color: const Color(0xFF111B2B)
-                                        .withOpacity(0.75),
+                                        .withValues(alpha: 0.75),
                                     borderRadius: BorderRadius.circular(6)),
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 6, vertical: 4),

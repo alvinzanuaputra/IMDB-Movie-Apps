@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'dart:async';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:imdbmoviesapps/Core/App/AppSettings.dart';
 import 'package:imdbmoviesapps/Screens/Home/HomePage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:imdbmoviesapps/firebase_options.dart';
+
+// tambahan untuk firebase
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   await AppSettings.initialize();
   SharedPreferences sp = await SharedPreferences.getInstance();
   String imagepath = sp.getString('imagepath') ?? '';
@@ -67,48 +74,49 @@ class intermediatescreen extends StatefulWidget {
 }
 
 class _intermediatescreenState extends State<intermediatescreen> {
+  static const Duration _splashDuration = Duration(seconds: 2);
+
+  @override
+  void initState() {
+    super.initState();
+    Timer(_splashDuration, () {
+      if (!mounted) return;
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute<void>(builder: (_) => const MyHomePage()),
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return AnimatedSplashScreen(
-      // disableNavigation: true,
+    return Scaffold(
       backgroundColor: const Color(0xFF0B111B),
-
-      duration: 2000,
-      nextScreen: const MyHomePage(),
-      splash: Container(
-        child: Center(
-          child: Column(
-            children: [
-              Expanded(
-                child: Container(
-                  margin: const EdgeInsets.only(bottom: 10),
-                  decoration: const BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage('assets/icons/logo.png'),
-                          fit: BoxFit.contain)),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: 200,
+              height: 200,
+              margin: const EdgeInsets.only(bottom: 16),
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/icons/logo.png'),
+                  fit: BoxFit.contain,
                 ),
               ),
-              Expanded(
-                child: Container(
-                  child: const Text(
-                    'By Alvin Zanua Putra',
-                    style: TextStyle(
-                      color: Color(0xFFE5EAF4),
-                      fontSize: 17,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ),
+            ),
+            const Text(
+              'By Alvin Zanua Putra',
+              style: TextStyle(
+                color: Color(0xFFE5EAF4),
+                fontSize: 17,
+                fontWeight: FontWeight.w600,
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
-
-      // splash: Image.asset('assets/images/intro.png'),
-      splashTransition: SplashTransition.fadeTransition,
-      splashIconSize: 200,
-      // centered: false,
     );
   }
 }

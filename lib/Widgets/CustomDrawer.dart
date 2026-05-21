@@ -353,8 +353,7 @@ class _DrawerTile extends StatelessWidget {
     required this.title,
     required this.onTap,
     required this.isDark,
-    this.trailing,
-  });
+  }) : trailing = null;
 
   final Widget icon;
   final String title;

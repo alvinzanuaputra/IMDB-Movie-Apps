@@ -82,8 +82,8 @@ class _ReviewUIState extends State<ReviewUI> {
               decoration: BoxDecoration(
                 color: const Color(0xFF141E2D),
                 borderRadius: BorderRadius.circular(14),
-                border:
-                    Border.all(color: const Color(0xFF35B6FF).withOpacity(0.1)),
+                border: Border.all(
+                    color: const Color(0xFF35B6FF).withValues(alpha: 0.1)),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
